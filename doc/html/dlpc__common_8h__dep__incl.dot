@@ -1,0 +1,31 @@
+digraph "api/dlpc_common.h"
+{
+ // INTERACTIVE_SVG=YES
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="api/dlpc_common.h",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="api/dlpc347x_internal\l_patterns.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dlpc347x__internal__patterns_8c.html",tooltip="Implements the APIs for creating internal pattern data for the 347x controllers (DLP2010, DLP3010, and DLP4710). "];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="api/dlpc34xx.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dlpc34xx_8h.html",tooltip="DLPC347x Commands. "];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="api/dlpc34xx.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dlpc34xx_8c.html",tooltip="DLPC347x Commands. "];
+  Node3 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="samples/dlpc347x_samples.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dlpc347x__samples_8c.html",tooltip="Sample code for generating internal pattern data and communicating with the DLP2010-LC and DLP3010-LC..."];
+  Node1 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="api/dlpc34xx_dual.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dlpc34xx__dual_8h.html",tooltip="DLPC347x Dual Commands. "];
+  Node6 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="api/dlpc34xx_dual.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dlpc34xx__dual_8c.html",tooltip="DLPC347x Dual Commands. "];
+  Node6 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="samples/dlpc347x_dual\l_samples.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dlpc347x__dual__samples_8c.html",tooltip="Sample code for generating internal pattern data and communicating with the DLPC4710-LC EVMs..."];
+  Node1 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="api/dlpc654x.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dlpc654x_8h.html",tooltip="Bootloader commands, Projector Control, Formatter Only Commands. "];
+  Node9 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="api/dlpc654x.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dlpc654x_8c.html",tooltip="Bootloader commands, Projector Control, Formatter Only Commands. "];
+  Node9 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="samples/dlpc654x_samples\l/dlpc654x_sample.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dlpc654x__sample_8h_source.html"];
+  Node1 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 [label="api/dlpc_common.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dlpc__common_8c.html",tooltip="Structs and functions to initialize the Command Library. "];
+  Node1 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

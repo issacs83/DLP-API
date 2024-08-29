@@ -1,0 +1,8 @@
+﻿  dlpc34xx.c
+  dlpc_common.c
+  cypress_i2c.c
+  dlpc343x_samples.c
+  Generating Code...
+  dlpc343x.vcxproj -> C:\DLPC-API-1.3\build\vs2017\Debug\dlpc343x.exe
+  C:\DLPC-API-1.3\build\vs2017\dlpc343x\..\..\..\third_party\cyusbserial\cyusbserial.dll
+  1 File(s) copied

@@ -1,0 +1,7 @@
+var searchData=
+[
+  ['populateeightbitpatterndata',['PopulateEightBitPatternData',['../dlpc347x__dual__samples_8c.html#a2c159309fbdfafc6b9e839d3bb454095',1,'PopulateEightBitPatternData(uint16_t Length, uint8_t *Data, uint16_t NumBars):&#160;dlpc347x_dual_samples.c'],['../dlpc347x__samples_8c.html#a2c159309fbdfafc6b9e839d3bb454095',1,'PopulateEightBitPatternData(uint16_t Length, uint8_t *Data, uint16_t NumBars):&#160;dlpc347x_samples.c']]],
+  ['populateonebitpatterndata',['PopulateOneBitPatternData',['../dlpc347x__dual__samples_8c.html#a43bf72a7d099ff3059ede75dcc829b48',1,'PopulateOneBitPatternData(uint16_t Length, uint8_t *Data, uint16_t NumBars):&#160;dlpc347x_dual_samples.c'],['../dlpc347x__samples_8c.html#a43bf72a7d099ff3059ede75dcc829b48',1,'PopulateOneBitPatternData(uint16_t Length, uint8_t *Data, uint16_t NumBars):&#160;dlpc347x_samples.c']]],
+  ['populatepatternsetdata',['PopulatePatternSetData',['../dlpc347x__dual__samples_8c.html#a59974672a23d4b15cc645835094294af',1,'PopulatePatternSetData(uint16_t DMDWidth, uint16_t DMDHeight):&#160;dlpc347x_dual_samples.c'],['../dlpc347x__samples_8c.html#a59974672a23d4b15cc645835094294af',1,'PopulatePatternSetData(uint16_t DMDWidth, uint16_t DMDHeight):&#160;dlpc347x_samples.c']]],
+  ['populatepatterntabledata',['PopulatePatternTableData',['../dlpc347x__dual__samples_8c.html#a05763d44aaff7d0f837f4bb22b39dc0f',1,'PopulatePatternTableData():&#160;dlpc347x_dual_samples.c'],['../dlpc347x__samples_8c.html#a05763d44aaff7d0f837f4bb22b39dc0f',1,'PopulatePatternTableData():&#160;dlpc347x_samples.c']]]
+];

@@ -1,0 +1,14 @@
+digraph "InitConnectionAndCommandLayer"
+{
+ // INTERACTIVE_SVG=YES
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="InitConnectionAndCommand\lLayer",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="DLPC_COMMON_InitCommandLibrary",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dlpc__common_8c.html#ad2a9c5491fe7a729048bb8407212ae29"];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="WriteI2C",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dlpc347x__samples_8c.html#ae52deebf2c7abb60ec8b43d3cdac8129"];
+  Node1 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="ReadI2C",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dlpc347x__samples_8c.html#a15ed770b9a721168fdc5f0eae1c112ec"];
+}
