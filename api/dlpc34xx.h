@@ -602,6 +602,7 @@ typedef struct
     uint32_t IlluminationTime;
     uint32_t PreIlluminationDarkTime;
     uint32_t PostIlluminationDarkTime;
+    uint32_t PatternEntryIndex;
 } DLPC34XX_PatternOrderTableEntry_s;
 
 typedef struct

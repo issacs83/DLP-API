@@ -1856,6 +1856,7 @@ uint32_t DLPC34XX_WritePatternOrderTableEntry(DLPC34XX_WriteControl_e WriteContr
     DLPC_COMMON_PackBytes((uint8_t*)&PatternOrderTableEntry->IlluminationTime, 4);
     DLPC_COMMON_PackBytes((uint8_t*)&PatternOrderTableEntry->PreIlluminationDarkTime, 4);
     DLPC_COMMON_PackBytes((uint8_t*)&PatternOrderTableEntry->PostIlluminationDarkTime, 4);
+    DLPC_COMMON_PackBytes((uint8_t*)&PatternOrderTableEntry->PatternEntryIndex, 1);
 
     DLPC_COMMON_SetCommandDestination(0);
     Status = DLPC_COMMON_SendWrite();
@@ -1888,6 +1889,7 @@ uint32_t DLPC34XX_ReadPatternOrderTableEntry(uint8_t PatternOrderTableEntryIndex
         PatternOrderTableEntry->IlluminationTime = *((uint32_t*)DLPC_COMMON_UnpackBytes(4));
         PatternOrderTableEntry->PreIlluminationDarkTime = *((uint32_t*)DLPC_COMMON_UnpackBytes(4));
         PatternOrderTableEntry->PostIlluminationDarkTime = *((uint32_t*)DLPC_COMMON_UnpackBytes(4));
+        PatternOrderTableEntry->PatternEntryIndex = *((uint32_t*)DLPC_COMMON_UnpackBytes(1));
     }
     return Status;
 }

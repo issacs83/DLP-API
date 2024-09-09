@@ -72,6 +72,7 @@ typedef struct
     uint32_t IlluminationTimeInMicroseconds;
     uint32_t PreIlluminationDarkTimeInMicroseconds;
     uint32_t PostIlluminationDarkTimeInMicroseconds;
+    uint8_t  PatternEntryIndex;
 } PatternOrderTableEntry_s;
 
 typedef struct
@@ -382,6 +383,7 @@ void WritePatternOrderTable()
         Entry.IlluminationTimeInMicroseconds         = Input->IlluminationTimeInMicroseconds;
         Entry.PreIlluminationDarkTimeInMicroseconds  = Input->PreIlluminationDarkTimeInMicroseconds;
         Entry.PostIlluminationDarkTimeInMicroseconds = Input->PostIlluminationDarkTimeInMicroseconds;
+        Entry.PatternEntryIndex                      = Input->PatternEntryIndex;
 
         s_WritePatternDataCallback(sizeof(PatternOrderTableEntry_s), (uint8_t*)&Entry);
     }
@@ -512,20 +514,23 @@ void WritePatternSets(bool EastWestFlip, bool LongAxisFlip)
 		}
         else // single controller
         {
-			PatternData = &PatternSet->PatternArray[PatternIdx];
+            for (PatternIdx = 0; PatternIdx < PatternSet->PatternCount; PatternIdx++)
+            {
+                PatternData = &PatternSet->PatternArray[PatternIdx];
 
-			if (LongAxisFlip)
-			{
-                Reverse(PatternData->PixelArray, 0, PatternData->PixelArrayCount);
-			}
+				if (LongAxisFlip)
+				{
+                	Reverse(PatternData->PixelArray, 0, PatternData->PixelArrayCount);
+				}
 
-			WritePatternData(PatternSet, PatternData, true);
+				WritePatternData(PatternSet, PatternData, true);
 
-			// We don't own this data, so make sure to put it back
-			if (LongAxisFlip)
-			{
-                Reverse(PatternData->PixelArray, 0, PatternData->PixelArrayCount);
-			}
+                // We don't own this data, so make sure to put it back
+                if (LongAxisFlip)
+                {
+                    Reverse(PatternData->PixelArray, 0, PatternData->PixelArrayCount);
+                }
+            }
         }
     }
 }

@@ -53,14 +53,14 @@
    
    
 
-#define MAX_WIDTH                         DLP2010_WIDTH
-#define MAX_HEIGHT                        DLP2010_HEIGHT
+#define MAX_WIDTH                         DLP3010_WIDTH //DLP2010_WIDTH
+#define MAX_HEIGHT                        DLP3010_HEIGHT //DLP2010_HEIGHT
 
-#define NUM_PATTERN_SETS                  4
-#define NUM_PATTERN_ORDER_TABLE_ENTRIES   4
-#define NUM_ONE_BIT_HORIZONTAL_PATTERNS   4
+#define NUM_PATTERN_SETS                  2
+#define NUM_PATTERN_ORDER_TABLE_ENTRIES   2
+#define NUM_ONE_BIT_HORIZONTAL_PATTERNS   0
 #define NUM_EIGHT_BIT_HORIZONTAL_PATTERNS 4
-#define NUM_ONE_BIT_VERTICAL_PATTERNS     4
+#define NUM_ONE_BIT_VERTICAL_PATTERNS     0
 #define NUM_EIGHT_BIT_VERTICAL_PATTERNS   4
 #define TOTAL_HORIZONTAL_PATTERNS         (NUM_ONE_BIT_HORIZONTAL_PATTERNS + NUM_EIGHT_BIT_HORIZONTAL_PATTERNS)
 #define TOTAL_VERTICAL_PATTERNS           (NUM_ONE_BIT_VERTICAL_PATTERNS + NUM_EIGHT_BIT_VERTICAL_PATTERNS)
@@ -223,37 +223,37 @@ void PopulatePatternSetData(uint16_t DMDWidth, uint16_t DMDHeight)
     uint16_t                       NumBars;
     DLPC34XX_INT_PAT_PatternSet_s* PatternSet;
 
-    /* Create a 1-bit (binary) Horizontal Pattern Set */
-    PatternSet = &s_PatternSets[PatternSetIdx++];
-    PatternSet->BitDepth     = DLPC34XX_INT_PAT_BITDEPTH_ONE;
-    PatternSet->Direction    = DLPC34XX_INT_PAT_DIRECTION_HORIZONTAL;
-    PatternSet->PatternCount = NUM_ONE_BIT_HORIZONTAL_PATTERNS;
-    PatternSet->PatternArray = &s_Patterns[PatternIdx];
-    for (Index = 0; Index < NUM_ONE_BIT_HORIZONTAL_PATTERNS; Index++)
-    {
-        NumBars = 2 * (Index + 1);
-        PopulateOneBitPatternData(DMDHeight, s_HorizontalPatternData[HorzPatternIdx], NumBars);
-        s_Patterns[PatternIdx].PixelArray      = s_HorizontalPatternData[HorzPatternIdx];
-        s_Patterns[PatternIdx].PixelArrayCount = DMDHeight;
-        PatternIdx++;
-        HorzPatternIdx++;
-    }
+    // /* Create a 1-bit (binary) Horizontal Pattern Set */
+    // PatternSet = &s_PatternSets[PatternSetIdx++];
+    // PatternSet->BitDepth     = DLPC34XX_INT_PAT_BITDEPTH_ONE;
+    // PatternSet->Direction    = DLPC34XX_INT_PAT_DIRECTION_HORIZONTAL;
+    // PatternSet->PatternCount = NUM_ONE_BIT_HORIZONTAL_PATTERNS;
+    // PatternSet->PatternArray = &s_Patterns[PatternIdx];
+    // for (Index = 0; Index < NUM_ONE_BIT_HORIZONTAL_PATTERNS; Index++)
+    // {
+    //     NumBars = 2 * (Index + 1);
+    //     PopulateOneBitPatternData(DMDHeight, s_HorizontalPatternData[HorzPatternIdx], NumBars);
+    //     s_Patterns[PatternIdx].PixelArray      = s_HorizontalPatternData[HorzPatternIdx];
+    //     s_Patterns[PatternIdx].PixelArrayCount = DMDHeight;
+    //     PatternIdx++;
+    //     HorzPatternIdx++;
+    // }
     
-    /* Create a 1-bit (binary) Vertical Pattern Set */
-    PatternSet = &s_PatternSets[PatternSetIdx++];
-    PatternSet->BitDepth     = DLPC34XX_INT_PAT_BITDEPTH_ONE;
-    PatternSet->Direction    = DLPC34XX_INT_PAT_DIRECTION_VERTICAL;
-    PatternSet->PatternCount = NUM_ONE_BIT_VERTICAL_PATTERNS;
-    PatternSet->PatternArray = &s_Patterns[PatternIdx];
-    for (Index = 0; Index < NUM_ONE_BIT_VERTICAL_PATTERNS; Index++)
-    {
-        NumBars = 2 * (Index + 1);
-        PopulateOneBitPatternData(DMDWidth, s_VerticalPatternData[VertPatternIdx], NumBars);
-        s_Patterns[PatternIdx].PixelArray      = s_VerticalPatternData[VertPatternIdx];
-        s_Patterns[PatternIdx].PixelArrayCount = DMDWidth;
-        PatternIdx++;
-        VertPatternIdx++;
-    }
+    // /* Create a 1-bit (binary) Vertical Pattern Set */
+    // PatternSet = &s_PatternSets[PatternSetIdx++];
+    // PatternSet->BitDepth     = DLPC34XX_INT_PAT_BITDEPTH_ONE;
+    // PatternSet->Direction    = DLPC34XX_INT_PAT_DIRECTION_VERTICAL;
+    // PatternSet->PatternCount = NUM_ONE_BIT_VERTICAL_PATTERNS;
+    // PatternSet->PatternArray = &s_Patterns[PatternIdx];
+    // for (Index = 0; Index < NUM_ONE_BIT_VERTICAL_PATTERNS; Index++)
+    // {
+    //     NumBars = 2 * (Index + 1);
+    //     PopulateOneBitPatternData(DMDWidth, s_VerticalPatternData[VertPatternIdx], NumBars);
+    //     s_Patterns[PatternIdx].PixelArray      = s_VerticalPatternData[VertPatternIdx];
+    //     s_Patterns[PatternIdx].PixelArrayCount = DMDWidth;
+    //     PatternIdx++;
+    //     VertPatternIdx++;
+    // }
 
     /* Create an 8-bit (grayscale) Horizontal Pattern Set */
     PatternSet = &s_PatternSets[PatternSetIdx++];
@@ -300,42 +300,46 @@ void PopulatePatternTableData()
     /* Pattern Table Entry 0 - uses Pattern Set 0 */
     PatternOrderTableEntry = &s_PatternOrderTable[PatternOrderTableIdx++];
     PatternOrderTableEntry->PatternSetIndex                        = PatternSetIdx;
+    PatternOrderTableEntry->PatternEntryIndex = PatternSetIdx;
     PatternOrderTableEntry->NumDisplayPatterns                     = s_PatternSets[PatternSetIdx++].PatternCount;
     PatternOrderTableEntry->IlluminationSelect                     = DLPC34XX_INT_PAT_ILLUMINATION_RED;
     PatternOrderTableEntry->InvertPatterns                         = false;
-    PatternOrderTableEntry->IlluminationTimeInMicroseconds         = 5000;
-    PatternOrderTableEntry->PreIlluminationDarkTimeInMicroseconds  = 250;
-    PatternOrderTableEntry->PostIlluminationDarkTimeInMicroseconds = 1000;
+    PatternOrderTableEntry->IlluminationTimeInMicroseconds         = 460000;
+    PatternOrderTableEntry->PreIlluminationDarkTimeInMicroseconds  = 25000;
+    PatternOrderTableEntry->PostIlluminationDarkTimeInMicroseconds = 15000;
 
     /* Pattern Table Entry 1 - uses Pattern Set 1 */
     PatternOrderTableEntry = &s_PatternOrderTable[PatternOrderTableIdx++];
     PatternOrderTableEntry->PatternSetIndex                        = PatternSetIdx;
+    PatternOrderTableEntry->PatternEntryIndex = PatternSetIdx;
     PatternOrderTableEntry->NumDisplayPatterns                     = s_PatternSets[PatternSetIdx++].PatternCount;
     PatternOrderTableEntry->IlluminationSelect                     = DLPC34XX_INT_PAT_ILLUMINATION_GREEN;
     PatternOrderTableEntry->InvertPatterns                         = false;
-    PatternOrderTableEntry->IlluminationTimeInMicroseconds         = 5000;
-    PatternOrderTableEntry->PreIlluminationDarkTimeInMicroseconds  = 250;
-    PatternOrderTableEntry->PostIlluminationDarkTimeInMicroseconds = 1000;
+    PatternOrderTableEntry->IlluminationTimeInMicroseconds         = 460000;
+    PatternOrderTableEntry->PreIlluminationDarkTimeInMicroseconds  = 25000;
+    PatternOrderTableEntry->PostIlluminationDarkTimeInMicroseconds = 15000;
 
-    /* Pattern Table Entry 2 - uses Pattern Set 2 */
-    PatternOrderTableEntry = &s_PatternOrderTable[PatternOrderTableIdx++];
-    PatternOrderTableEntry->PatternSetIndex                        = PatternSetIdx;
-    PatternOrderTableEntry->NumDisplayPatterns                     = s_PatternSets[PatternSetIdx++].PatternCount;
-    PatternOrderTableEntry->IlluminationSelect                     = DLPC34XX_INT_PAT_ILLUMINATION_BLUE;
-    PatternOrderTableEntry->InvertPatterns                         = false;
-    PatternOrderTableEntry->IlluminationTimeInMicroseconds         = 5000;
-    PatternOrderTableEntry->PreIlluminationDarkTimeInMicroseconds  = 250;
-    PatternOrderTableEntry->PostIlluminationDarkTimeInMicroseconds = 1000;
+    // /* Pattern Table Entry 2 - uses Pattern Set 2 */
+    // PatternOrderTableEntry = &s_PatternOrderTable[PatternOrderTableIdx++];
+    // PatternOrderTableEntry->PatternSetIndex                        = PatternSetIdx;
+    // PatternOrderTableEntry->PatternEntryIndex = PatternSetIdx;
+    // PatternOrderTableEntry->NumDisplayPatterns                     = s_PatternSets[PatternSetIdx++].PatternCount;
+    // PatternOrderTableEntry->IlluminationSelect                     = DLPC34XX_INT_PAT_ILLUMINATION_BLUE;
+    // PatternOrderTableEntry->InvertPatterns                         = false;
+    // PatternOrderTableEntry->IlluminationTimeInMicroseconds         = 460000;
+    // PatternOrderTableEntry->PreIlluminationDarkTimeInMicroseconds  = 25000;
+    // PatternOrderTableEntry->PostIlluminationDarkTimeInMicroseconds = 15000;
 
-    /* Pattern Table Entry 3 - uses Pattern Set 3 */
-    PatternOrderTableEntry = &s_PatternOrderTable[PatternOrderTableIdx++];
-    PatternOrderTableEntry->PatternSetIndex                        = PatternSetIdx;
-    PatternOrderTableEntry->NumDisplayPatterns                     = s_PatternSets[PatternSetIdx++].PatternCount;
-    PatternOrderTableEntry->IlluminationSelect                     = DLPC34XX_INT_PAT_ILLUMINATION_RGB;
-    PatternOrderTableEntry->InvertPatterns                         = false;
-    PatternOrderTableEntry->IlluminationTimeInMicroseconds         = 11000;
-    PatternOrderTableEntry->PreIlluminationDarkTimeInMicroseconds  = 250;
-    PatternOrderTableEntry->PostIlluminationDarkTimeInMicroseconds = 1000;
+    // /* Pattern Table Entry 3 - uses Pattern Set 3 */
+    // PatternOrderTableEntry = &s_PatternOrderTable[PatternOrderTableIdx++];
+    // PatternOrderTableEntry->PatternSetIndex                        = PatternSetIdx;
+    // PatternOrderTableEntry->PatternEntryIndex = PatternSetIdx;
+    // PatternOrderTableEntry->NumDisplayPatterns                     = s_PatternSets[PatternSetIdx++].PatternCount;
+    // PatternOrderTableEntry->IlluminationSelect                     = DLPC34XX_INT_PAT_ILLUMINATION_RGB;
+    // PatternOrderTableEntry->InvertPatterns                         = false;
+    // PatternOrderTableEntry->IlluminationTimeInMicroseconds         = 460000;
+    // PatternOrderTableEntry->PreIlluminationDarkTimeInMicroseconds  = 25000;
+    // PatternOrderTableEntry->PostIlluminationDarkTimeInMicroseconds = 15000;
 }
 
 void CopyDataToFlashProgramBuffer(uint8_t* Length, uint8_t** DataPtr)
@@ -475,22 +479,78 @@ void LoadPatternOrderTableEntryfromFlash()
 	DLPC34XX_WritePatternOrderTableEntry(DLPC34XX_WC_RELOAD_FROM_FLASH, &PatternOrderTableEntry);
 }
 
-void LoadPatternOrderTableEntry(uint8_t PatternSetIndex)
+void LoadPatternOrderTableEntry()
 {
+    uint32_t Status = 0;
 	DLPC34XX_PatternOrderTableEntry_s PatternOrderTableEntry;
+    DLPC34XX_PatternOrderTableEntry_s PatternOrderTableEntry_;
 
 	/* Set PatternOrderTableEntry to select specific Pattern Set and configure settings */
-	PatternOrderTableEntry.PatSetIndex = 1;
-	PatternOrderTableEntry.NumberOfPatternsToDisplay = PatternSetIndex;
-	PatternOrderTableEntry.RedIlluminator = DLPC34XX_IE_DISABLE;
+	PatternOrderTableEntry.PatSetIndex = s_PatternOrderTable[0].PatternSetIndex;
+    PatternOrderTableEntry.PatternEntryIndex = s_PatternOrderTable[0].PatternEntryIndex;
+	PatternOrderTableEntry.NumberOfPatternsToDisplay = s_PatternOrderTable[0].NumDisplayPatterns;
+	PatternOrderTableEntry.RedIlluminator = DLPC34XX_IE_ENABLE;
 	PatternOrderTableEntry.GreenIlluminator = DLPC34XX_IE_DISABLE;
-	PatternOrderTableEntry.BlueIlluminator = DLPC34XX_IE_ENABLE;
+	PatternOrderTableEntry.BlueIlluminator = DLPC34XX_IE_DISABLE;
 	PatternOrderTableEntry.PatternInvertLsword = 0;
 	PatternOrderTableEntry.PatternInvertMsword = 0;
-	PatternOrderTableEntry.IlluminationTime = 2000;
-	PatternOrderTableEntry.PreIlluminationDarkTime = 250;
-	PatternOrderTableEntry.PostIlluminationDarkTime = 60;
-	DLPC34XX_WritePatternOrderTableEntry(DLPC34XX_WC_START, &PatternOrderTableEntry);
+	PatternOrderTableEntry.IlluminationTime = s_PatternOrderTable[0].IlluminationTimeInMicroseconds;
+	PatternOrderTableEntry.PreIlluminationDarkTime = s_PatternOrderTable[0].PreIlluminationDarkTimeInMicroseconds;
+	PatternOrderTableEntry.PostIlluminationDarkTime = s_PatternOrderTable[0].PostIlluminationDarkTimeInMicroseconds;
+    Status = DLPC34XX_WritePatternOrderTableEntry(DLPC34XX_WC_START, &PatternOrderTableEntry);
+    printf("DLPC34XX_WritePatternOrderTableEntry : %d \n", Status);
+    Status = DLPC34XX_ReadPatternOrderTableEntry(0, &PatternOrderTableEntry_);
+    printf("pattern read : %d \n", Status);
+
+    PatternOrderTableEntry.PatSetIndex = s_PatternOrderTable[1].PatternSetIndex;
+    PatternOrderTableEntry.PatternEntryIndex = s_PatternOrderTable[1].PatternEntryIndex;
+    PatternOrderTableEntry.NumberOfPatternsToDisplay = s_PatternOrderTable[1].NumDisplayPatterns;
+    PatternOrderTableEntry.RedIlluminator = DLPC34XX_IE_ENABLE;
+    PatternOrderTableEntry.GreenIlluminator = DLPC34XX_IE_DISABLE;
+    PatternOrderTableEntry.BlueIlluminator = DLPC34XX_IE_DISABLE;
+    PatternOrderTableEntry.PatternInvertLsword = 0;
+    PatternOrderTableEntry.PatternInvertMsword = 0;
+    PatternOrderTableEntry.IlluminationTime = s_PatternOrderTable[1].IlluminationTimeInMicroseconds;
+    PatternOrderTableEntry.PreIlluminationDarkTime = s_PatternOrderTable[1].PreIlluminationDarkTimeInMicroseconds;
+    PatternOrderTableEntry.PostIlluminationDarkTime = s_PatternOrderTable[1].PostIlluminationDarkTimeInMicroseconds;
+    Status = DLPC34XX_WritePatternOrderTableEntry(DLPC34XX_WC_CONTINUE, &PatternOrderTableEntry);
+    printf("DLPC34XX_WritePatternOrderTableEntry : %d \n", Status);
+    Status = DLPC34XX_ReadPatternOrderTableEntry(1, &PatternOrderTableEntry_);
+    printf("pattern read : %d \n", Status);
+
+    // PatternOrderTableEntry.PatSetIndex = s_PatternOrderTable[2].PatternSetIndex;
+    // PatternOrderTableEntry.PatternEntryIndex = s_PatternOrderTable[2].PatternEntryIndex;
+    // PatternOrderTableEntry.NumberOfPatternsToDisplay = s_PatternOrderTable[2].NumDisplayPatterns;
+    // PatternOrderTableEntry.RedIlluminator = DLPC34XX_IE_ENABLE;
+    // PatternOrderTableEntry.GreenIlluminator = DLPC34XX_IE_DISABLE;
+    // PatternOrderTableEntry.BlueIlluminator = DLPC34XX_IE_DISABLE;
+    // PatternOrderTableEntry.PatternInvertLsword = 0;
+    // PatternOrderTableEntry.PatternInvertMsword = 0;
+    // PatternOrderTableEntry.IlluminationTime = s_PatternOrderTable[2].IlluminationTimeInMicroseconds;
+    // PatternOrderTableEntry.PreIlluminationDarkTime = s_PatternOrderTable[2].PreIlluminationDarkTimeInMicroseconds;
+    // PatternOrderTableEntry.PostIlluminationDarkTime = s_PatternOrderTable[2].PostIlluminationDarkTimeInMicroseconds;
+    // Status = DLPC34XX_WritePatternOrderTableEntry(DLPC34XX_WC_CONTINUE, &PatternOrderTableEntry);
+    // printf("DLPC34XX_WritePatternOrderTableEntry : %d \n", Status);
+    // Status = DLPC34XX_ReadPatternOrderTableEntry(2, &PatternOrderTableEntry_);
+    // printf("pattern read : %d \n", Status);
+
+    // PatternOrderTableEntry.PatSetIndex = s_PatternOrderTable[3].PatternSetIndex;
+    // PatternOrderTableEntry.PatternEntryIndex = s_PatternOrderTable[3].PatternEntryIndex;
+    // PatternOrderTableEntry.NumberOfPatternsToDisplay = s_PatternOrderTable[3].NumDisplayPatterns;
+    // PatternOrderTableEntry.RedIlluminator = DLPC34XX_IE_ENABLE;
+    // PatternOrderTableEntry.GreenIlluminator = DLPC34XX_IE_DISABLE;
+    // PatternOrderTableEntry.BlueIlluminator = DLPC34XX_IE_DISABLE;
+    // PatternOrderTableEntry.PatternInvertLsword = 0;
+    // PatternOrderTableEntry.PatternInvertMsword = 0;
+    // PatternOrderTableEntry.IlluminationTime = s_PatternOrderTable[3].IlluminationTimeInMicroseconds;
+    // PatternOrderTableEntry.PreIlluminationDarkTime = s_PatternOrderTable[3].PreIlluminationDarkTimeInMicroseconds;
+    // PatternOrderTableEntry.PostIlluminationDarkTime = s_PatternOrderTable[3].PostIlluminationDarkTimeInMicroseconds;
+    // Status = DLPC34XX_WritePatternOrderTableEntry(DLPC34XX_WC_CONTINUE, &PatternOrderTableEntry);
+    // printf("DLPC34XX_WritePatternOrderTableEntry : %d \n", Status);
+    // Status = DLPC34XX_ReadPatternOrderTableEntry(3, &PatternOrderTableEntry_);
+    // printf("pattern read : %d \n", Status);
+
+    return;
 }
 
 void WriteTestPatternGridLines()
@@ -705,10 +765,10 @@ void main()
 	//printf("Input Image Size = 0x%x, 0x%x \n", PixelsPerLine, LinesPerFrame);
 
 	/* ***** Write Test Patterns ***** */
-	WriteTestPatternGridLines();
-	WriteTestPatternColorBar();
+	//WriteTestPatternGridLines();
+	//WriteTestPatternColorBar();
 
-	WriteLabbCaic();
+	//WriteLabbCaic();
 
 	/* ***** Test Internal Pattern Sensing ***** */
 	bool LoadFromFirmware = false;//true;
@@ -737,7 +797,8 @@ void main()
 		GenerateAndProgramPatternData(DLPC34XX_INT_PAT_DMD_DLP3010, false, false);
 
 		/* Load Pattern Order Table Entry from Flash */
-		LoadPatternOrderTableEntryfromFlash();
+		//LoadPatternOrderTableEntryfromFlash();
+		LoadPatternOrderTableEntry();
 
 		/* Generate and write pattern data to a file */
 		GenerateAndWritePatternDataToFile(DLPC34XX_INT_PAT_DMD_DLP3010, "pattern_data.bin", false, false);
@@ -747,7 +808,7 @@ void main()
     DLPC34XX_WriteOperatingModeSelect(DLPC34XX_OM_SENS_INTERNAL_PATTERN);
     DLPC34XX_WriteInternalPatternControl(DLPC34XX_PC_START, 0xFF);
 
-	WaitForSeconds(10);
+	WaitForSeconds(20);
 	DLPC34XX_WriteInternalPatternControl(DLPC34XX_PC_STOP, 0);
 
 	CYPRESS_I2C_RelinquishI2CBusAccess();
