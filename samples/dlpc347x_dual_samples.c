@@ -157,6 +157,7 @@ void WaitForSeconds(uint32_t Seconds)
     uint32_t retTime = (uint32_t)(time(0)) + Seconds;	// Get finishing time.
     while (time(0) < retTime);					        // Loop until it arrives.
 }
+
 /**
  * A sample function that generates a 1-bit (binary) 1-D pattern
  * The function fills the byte array Data. Each byte in the in array corresponds

@@ -310,11 +310,15 @@ void LoadFirmware()
 
 void main()
 {
+	DEBUG_PRINT("Starting the DLPC347x Sample Program...\n", "");
+
 	InitConnectionAndCommandLayer();
+	DEBUG_PRINT("Initialized Connection and Command Layer. I2CCommSucceed = %d\n", I2CCommSucceed);
 
 	if (!I2CCommSucceed)
 	{
-		printf("Error Init Connection & Command Layer!!!");
+		// printf("Error Init Connection & Command Layer!!!");
+		DEBUG_PRINT("Error: Initialization of Connection & Command Layer failed! I2CCommSucceed = %d\n", I2CCommSucceed);
 		return;
 	}
 

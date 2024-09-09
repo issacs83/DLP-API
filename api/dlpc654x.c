@@ -2564,7 +2564,7 @@ uint32_t DLPC654X_ReadManualWarpTable(uint16_t WarpTableIndex, uint16_t NumEntri
     {
         for (s_Index = 0; s_Index < (uint32_t)(DLPC_COMMON_GetBytesRead() / 2); s_Index++)
         {
-            WarpPoints[s_Index] = *((uint16_t*)DLPC_COMMON_UnpackBytes(2));
+            WarpPoints[s_Index] = (uint16_t*)DLPC_COMMON_UnpackBytes(2);
         }
     }
     return Status;

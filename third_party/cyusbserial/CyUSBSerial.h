@@ -51,6 +51,9 @@
 /*******************************Constants*********************************************/
 /*************************************************************************************/
 
+#define DEBUG_PRINT_VARS(fmt, ...) \
+    fprintf(stderr, "DEBUG: %s:%d:%s(): " fmt, __FILE__, __LINE__, __func__, ##__VA_ARGS__)
+    
 /*@@Constants
 This section contains details of the all the constants 
 that are part of Cypress USB Serial driver library.
@@ -64,20 +67,20 @@ This section contains USB Serial library version information.
 */
 
 /* Major version number for library. */
-#define CY_US_VERSION_MAJOR             (2)
+#define CY_US_VERSION_MAJOR             (1)//(2)
 
 /* Minor version number for library. */
 #define CY_US_VERSION_MINOR             (0)
 
 /* Patch version number for library. */
-#define CY_US_VERSION_PATCH             (3)
+#define CY_US_VERSION_PATCH             (0)//(3)
 
 /* Version number for the device. */
 #define CY_US_VERSION                   ((CY_US_VERSION_MAJOR)       | \
                                          (CY_US_VERSION_MINOR << 8)  | \
                                          (CY_US_VERSION_PATCH << 16))
 /* Library build number. */
-#define CY_US_VERSION_BUILD             (91)
+#define CY_US_VERSION_BUILD             (59)//(91)
 
 
 /*************************************************************************************/

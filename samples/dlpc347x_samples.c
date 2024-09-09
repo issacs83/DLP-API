@@ -48,6 +48,11 @@
 #include "string.h"
 #include "time.h"
 
+#define DEBUG_PRINT_VARS(fmt, ...) \
+    fprintf(stderr, "DEBUG: %s:%d:%s(): " fmt, __FILE__, __LINE__, __func__, ##__VA_ARGS__)
+   
+   
+
 #define MAX_WIDTH                         DLP2010_WIDTH
 #define MAX_HEIGHT                        DLP2010_HEIGHT
 
@@ -674,7 +679,10 @@ void LoadFirmware()
 
 void main()
 {
-    InitConnectionAndCommandLayer();
+    DEBUG_PRINT_VARS("Starting the DLPC347x Sample Program...\n");
+
+	InitConnectionAndCommandLayer();
+    DEBUG_PRINT_VARS("Init Connection And CommandLayer done..\n");
 
     /* TI DLP Pico EVMs use a GPIO handshake scheme for the controller I2C bus
      * arbitration. Call this method if using a TI EVM, remove otherwise
@@ -683,10 +691,13 @@ void main()
 	if (Status != true)
 	{
 		//printf("Error Request I2C Bus ACCESS!!!");
+        DEBUG_PRINT_VARS("Error requesting I2C Bus Access\n");
 		return;
 	}
+    
 	DLPC34XX_ControllerDeviceId_e DeviceId = 0;
 	DLPC34XX_ReadControllerDeviceId(&DeviceId);
+    DEBUG_PRINT_VARS("Controller Device Id = %d\n", DeviceId);
 	//printf("Controller Devicde Id = %d \n", DeviceId);
 
 	uint16_t PixelsPerLine, LinesPerFrame;
@@ -700,7 +711,7 @@ void main()
 	WriteLabbCaic();
 
 	/* ***** Test Internal Pattern Sensing ***** */
-	bool LoadFromFirmware = true;
+	bool LoadFromFirmware = false;//true;
 	bool LoadFromFile = false;	// Switch to load pattern from saved file or generated
 
 	if (LoadFromFirmware)
