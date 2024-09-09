@@ -1,0 +1,2 @@
+/usr/bin/ar qc libdlpc347x.a CMakeFiles/dlpc347x.dir/api/dlpc_common.c.o CMakeFiles/dlpc347x.dir/samples/cypress_i2c.c.o CMakeFiles/dlpc347x.dir/api/dlpc34xx.c.o CMakeFiles/dlpc347x.dir/api/dlpc34xx_dual.c.o CMakeFiles/dlpc347x.dir/api/dlpc347x_internal_patterns.c.o CMakeFiles/dlpc347x.dir/samples/dlpc347x_samples.c.o
+/usr/bin/ranlib libdlpc347x.a

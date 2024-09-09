@@ -1,0 +1,2 @@
+/usr/bin/ar qc libdlpc654x.a CMakeFiles/dlpc654x.dir/api/dlpc_common.c.o CMakeFiles/dlpc654x.dir/samples/cypress_i2c.c.o CMakeFiles/dlpc654x.dir/api/dlpc654x.c.o
+/usr/bin/ranlib libdlpc654x.a

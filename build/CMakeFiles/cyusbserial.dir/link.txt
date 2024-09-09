@@ -1,0 +1,2 @@
+/usr/bin/ar qc libcyusbserial.a CMakeFiles/cyusbserial.dir/third_party/cyusbserial/cyusb.c.o
+/usr/bin/ranlib libcyusbserial.a

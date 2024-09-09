@@ -1,0 +1,8 @@
+/home/issacs/texasinstruments/DLP-API/build/CMakeFiles/edit_cache.dir
+/home/issacs/texasinstruments/DLP-API/build/CMakeFiles/test_samples.dir
+/home/issacs/texasinstruments/DLP-API/build/CMakeFiles/rebuild_cache.dir
+/home/issacs/texasinstruments/DLP-API/build/CMakeFiles/dlpc654x.dir
+/home/issacs/texasinstruments/DLP-API/build/CMakeFiles/dlpc347x.dir
+/home/issacs/texasinstruments/DLP-API/build/third_party/cyusbserial/CMakeFiles/rebuild_cache.dir
+/home/issacs/texasinstruments/DLP-API/build/third_party/cyusbserial/CMakeFiles/edit_cache.dir
+/home/issacs/texasinstruments/DLP-API/build/third_party/cyusbserial/CMakeFiles/cyusbserial.dir
